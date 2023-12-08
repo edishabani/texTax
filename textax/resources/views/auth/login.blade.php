@@ -4,7 +4,7 @@
     </div>
 @endif
 
-@if (!auth()->user()->hasVerifiedEmail())
+@if (auth()->check() && !auth()->user()->hasVerifiedEmail())
     <div class="alert alert-warning">
         You need to verify your email address.
     </div>

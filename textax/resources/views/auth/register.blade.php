@@ -4,12 +4,6 @@
     </div>
 @endif
 
-@if (!auth()->user()->hasVerifiedEmail())
-    <div class="alert alert-warning">
-        You need to verify your email address.
-    </div>
-@endif
-
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
