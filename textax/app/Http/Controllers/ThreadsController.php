@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,38 +6,71 @@ use App\Models\Thread;
 
 class ThreadsController extends Controller
 {
-/**
- * Display a listing of the threads.
- *
- * @return \Illuminate\Contracts\View\View
- */
-public function index()
-{
-    $threads = Thread::all();
+    // Only authenticated users can create, edit, update, and delete threads.
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
 
-    return view('threads.index', compact('threads'));
-}
+    // Display a listing of the threads.
+    public function index()
+    {
+        // Fetch 15 threads per page
+        $threads = Thread::paginate(15);
+        return view('threads.index', compact('threads'));
+    }
 
-    /**
-     * Store a newly created thread in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+    // Show the form for creating a new thread.
+    public function create()
+    {
+        return view('threads.create');
+    }
+
+    // Store a newly created thread in the database.
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
         ]);
 
-        $thread = new Thread([
-            'title' => $request->get('title'),
-            'content' => $request->get('content'),
+        $thread = Thread::create($validatedData);
+
+        return redirect()->route('threads.show', $thread);
+    }
+
+    // Display the specified thread.
+    public function show(Thread $thread)
+    {
+        return view('threads.show', compact('thread'));
+    }
+
+    // Show the form for editing the specified thread.
+    public function edit(Thread $thread)
+    {
+        return view('threads.edit', compact('thread'));
+    }
+
+    // Update the specified thread in the database.
+    public function update(Request $request, Thread $thread)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
         ]);
 
-        $thread->save();
+        $thread->update($validatedData);
 
-        return redirect('/threads')->with('success', 'Thread Added Successfully.');
+        return redirect()->route('threads.show', $thread);
+    }
+
+    // Remove the specified thread from the database.
+    public function destroy(Thread $thread)
+    {
+        $thread->delete();
+
+        return redirect()->route('threads.index');
     }
 }
+?>

@@ -1,9 +1,3 @@
-@if (session('status') == 'verification-link-sent')
-    <div class="alert alert-success">
-        A new verification link has been sent to the email address you provided during registration.
-    </div>
-@endif
-
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf

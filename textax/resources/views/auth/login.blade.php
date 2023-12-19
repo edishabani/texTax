@@ -1,14 +1,3 @@
-@if (session('status') == 'verification-link-sent')
-    <div class="alert alert-success">
-        A new verification link has been sent to the email address you provided during registration.
-    </div>
-@endif
-
-@if (auth()->check() && !auth()->user()->hasVerifiedEmail())
-    <div class="alert alert-warning">
-        You need to verify your email address.
-    </div>
-@endif
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
