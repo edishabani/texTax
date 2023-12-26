@@ -1,4 +1,4 @@
-<div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4">
+<div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4 flex justify-center items-center">
     <div class="md:flex">
         <div class="p-8">
             <a href="{{ route('threads.show', $thread) }}" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">{{ $thread->title }}</a>

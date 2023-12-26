@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'TexTax') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -30,11 +30,19 @@
             <!-- Page Content -->
             <main>
                 @yield('content')
-                <a href="{{ route('threads.create') }}" class="ml-4 text-blue-500 hover:underline">Create Thread</a>
+                <a href="{{ route('threads.create') }}" class="ml-4 text-blue-500 hover:underline flex justify-center items-center">Create Thread</a>
                 @foreach ($threads as $thread)
                     <x-thread-card :thread="$thread" />
                 @endforeach
             </main>
+
+            <footer class="bg-white dark:bg-gray-800 shadow mt-16 py-4">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <p class="text-center text-sm">
+                        &copy; {{ date('Y') }} {{ config('app.name', 'TexTax') }}. All rights reserved.
+                    </p>
+                </div>
+            </footer>
         </div>
     </body>
 </html>
