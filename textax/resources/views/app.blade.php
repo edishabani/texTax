@@ -30,21 +30,17 @@
             })
             .catch(function (error) {
                 // The request failed
-                console.log(error);
-
-                // Display an error message to the user
-                alert('Login failed');
             });
         }
     </script>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4" id="app" x-data>
-        <!-- This is where you can start using Alpine.js -->
+        <!-- Start using Alpine.js -->
         <header x-text="'Welcome to Textax'"></header>
         <nav>
             <a href="{{ route('home') }}">Home</a>
-            <!-- Add more links as needed -->
+
         </nav>
 
         <div x-data="{ email: '', password: '' }" class="w-full max-w-xs mx-auto mt-20">

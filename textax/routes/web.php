@@ -21,6 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/login', 'Auth\LoginController@login');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,11 +33,18 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
     ->name('register');
 
 
-Route::get('/threads', [ThreadsController::class, 'index'])->name('threads.index');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/threads/create', [ThreadsController::class, 'create'])->name('threads.create');
+    Route::post('/threads', [ThreadsController::class, 'store'])->name('threads.store');
+    Route::get('/threads', [ThreadsController::class, 'index'])->name('threads.index');
+    Route::get('/threads/{thread}', [ThreadsController::class, 'show'])->name('threads.show');
+    Route::get('/threads/edit', [ThreadsController::class, 'show'])->name('threads.edit');
+    Route::get('/my-threads', [ThreadsController::class, 'myThreads'])->name('threads.my');
 });
 
 require __DIR__.'/auth.php';

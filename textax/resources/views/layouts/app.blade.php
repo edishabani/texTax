@@ -30,6 +30,7 @@
             <!-- Page Content -->
             <main>
                 @yield('content')
+                <a href="{{ route('threads.create') }}" class="ml-4 text-blue-500 hover:underline">Create Thread</a>
             </main>
         </div>
     </body>

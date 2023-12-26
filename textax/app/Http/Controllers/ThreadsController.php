@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Thread;
+use Illuminate\Support\Facades\Log;
 
 class ThreadsController extends Controller
 {
@@ -13,10 +14,20 @@ class ThreadsController extends Controller
     }
 
     // Display a listing of the threads.
-    public function index()
+    public function index(Request $request)
     {
-        // Fetch 15 threads per page
-        $threads = Thread::paginate(15);
+        $query = Thread::query();
+
+        if ($request->has('filter')) {
+
+                }
+
+        if ($request->has('sort')) {
+            // Apply your sort logic here
+        }
+
+        $threads = $query->paginate(30);
+
         return view('threads.index', compact('threads'));
     }
 
@@ -26,18 +37,45 @@ class ThreadsController extends Controller
     {
         return view('threads.create');
     }
+    // Show my threads.
+    public function myThreads()
+    {
+
+        $userId = auth()->id();
+        Log::info("Authenticated user ID: $userId");
+
+        $threads = Thread::where('user_id', $userId)->get();
+
+        foreach ($threads as $thread) {
+        Log::info("Thread ID: {$thread->id}, User ID: {$thread->user_id}");
+        }
+
+        return view('threads.my', compact('threads'));
+    }
 
     // Store a newly created thread in the database.
     public function store(Request $request)
     {
+    try {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
         ]);
 
-        $thread = Thread::create($validatedData);
+        $thread = Thread::create([
+            'user_id' => auth()->id(),
+            'title' => $validatedData['title'],
+            'body' => $validatedData['body'],
+        ]);
 
-        return redirect()->route('threads.show', $thread);
+        // Flash a success message to the session
+        session()->flash('message', 'Thread successfully created.');
+
+        return redirect()->route('threads.my', $thread);
+    } catch (\Exception $e) {
+        Log::error($e->getMessage());
+        return back()->withInput()->withErrors('An error occurred while creating the thread.');
+    }
     }
 
     // Display the specified thread.
@@ -73,4 +111,6 @@ class ThreadsController extends Controller
         return redirect()->route('threads.index');
     }
 }
+
 ?>
+
