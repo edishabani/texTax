@@ -31,6 +31,9 @@
             <main>
                 @yield('content')
                 <a href="{{ route('threads.create') }}" class="ml-4 text-blue-500 hover:underline">Create Thread</a>
+                @foreach ($threads as $thread)
+                    <x-thread-card :thread="$thread" />
+                @endforeach
             </main>
         </div>
     </body>
