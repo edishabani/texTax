@@ -14,6 +14,6 @@
     <form @submit.prevent="createThread">
         <input x-model="title" type="text" placeholder="Title">
         <textarea x-model="content" placeholder="Content"></textarea>
-        <button type="submit">Create Thread</button>
+        <button class="flex justify-center items-center" type="submit">Create Thread</button>
     </form>
 </div>
