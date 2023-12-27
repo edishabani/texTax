@@ -18,11 +18,12 @@ use App\Http\Controllers\ThreadsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::post('/login', 'Auth\LoginController@login');
 
+Route::get('/explore', [App\Http\Controllers\ExploreController::class, 'index'])->name('explore');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/threads/{thread}', [ThreadsController::class, 'show'])->name('threads.show');
     Route::get('/threads/edit', [ThreadsController::class, 'show'])->name('threads.edit');
     Route::get('/my-threads', [ThreadsController::class, 'myThreads'])->name('threads.my');
+
 });
 
 require __DIR__.'/auth.php';
