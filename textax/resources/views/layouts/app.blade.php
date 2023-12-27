@@ -30,10 +30,13 @@
             <!-- Page Content -->
             <main>
                 @yield('content')
-                <a href="{{ route('threads.create') }}" class="ml-4 text-blue-500 hover:underline flex justify-center items-center">Create Thread</a>
-                @foreach ($threads as $thread)
-                    <x-thread-card :thread="$thread" />
-                @endforeach
+
+                @if (Route::currentRouteNamed('dashboard'))
+                    <a href="{{ route('threads.create') }}" class="ml-4 text-blue-500 hover:underline flex justify-center items-center">Create Thread</a>
+                    @foreach ($threads as $thread)
+                        <x-thread-card :thread="$thread" />
+                    @endforeach
+                @endif
             </main>
 
             <footer class="bg-white dark:bg-gray-800 shadow mt-16 py-4">
