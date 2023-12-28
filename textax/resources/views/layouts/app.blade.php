@@ -20,7 +20,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
+                <header class="bg-white dark:bg-blue-800 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -37,9 +37,14 @@
                         <x-thread-card :thread="$thread" />
                     @endforeach
                 @endif
+                @if (Route::currentRouteNamed('threads.my'))
+                    @foreach ($threads as $thread)
+                        <x-thread-card :thread="$thread" />
+                    @endforeach
+                @endif
             </main>
 
-            <footer class="bg-white dark:bg-gray-800 shadow mt-16 py-4">
+            <footer class="bg-white dark:bg-blue-800 shadow mt-16 py-4">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <p class="text-center text-sm">
                         &copy; {{ date('Y') }} {{ config('app.name', 'TexTax') }}. All rights reserved.

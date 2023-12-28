@@ -33,20 +33,26 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest')
     ->name('register');
 
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/threads/create', [ThreadsController::class, 'create'])->name('threads.create');
     Route::post('/threads', [ThreadsController::class, 'store'])->name('threads.store');
     Route::get('/threads', [ThreadsController::class, 'index'])->name('threads.index');
+    Route::delete('/threads/{thread}', [ThreadsController::class, 'destroy'])->name('threads.destroy');
+
+    Route::get('/threads/create', [ThreadsController::class, 'create'])->name('threads.create');
     Route::get('/threads/{thread}', [ThreadsController::class, 'show'])->name('threads.show');
-    Route::get('/threads/edit', [ThreadsController::class, 'show'])->name('threads.edit');
+    Route::get('/threads/{thread}/edit', [ThreadsController::class, 'edit'])->name('threads.edit');
+
+    Route::patch('/threads/{thread}', [ThreadsController::class, 'update'])->name('threads.update');
+    Route::put('/threads/{thread}', [ThreadsController::class, 'update'])->name('threads.update');
+
     Route::get('/my-threads', [ThreadsController::class, 'myThreads'])->name('threads.my');
 
+    Route::get('/comments', 'App\Http\Controllers\Auth\CommentsController@index');
+    Route::post('/threads/{thread}/comments', 'App\Http\Controllers\Auth\CommentsController@store')->name('comments.store');
 });
 
 require __DIR__.'/auth.php';

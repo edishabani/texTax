@@ -11,11 +11,17 @@ class Comment extends Model
 
     protected $fillable = [
         'thread_id',
-        'content',
+        'body',
+        'user_id',
     ];
 
     public function thread()
     {
         return $this->belongsTo(Thread::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -79,8 +79,9 @@ class ThreadsController extends Controller
     }
 
     // Display the specified thread.
-    public function show(Thread $thread)
+    public function show($id)
     {
+        $thread = Thread::with('comments.user')->find($id);
         return view('threads.show', compact('thread'));
     }
 
@@ -100,15 +101,16 @@ class ThreadsController extends Controller
 
         $thread->update($validatedData);
 
-        return redirect()->route('threads.show', $thread);
+        return redirect()->route('threads.update', $thread);
     }
 
     // Remove the specified thread from the database.
-    public function destroy(Thread $thread)
+    public function destroy(Request $request, Thread $thread)
     {
+
         $thread->delete();
 
-        return redirect()->route('threads.index');
+        return redirect('my-threads');
     }
 }
 
