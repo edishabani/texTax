@@ -1,3 +1,5 @@
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+
 <div x-data="{ user: @json($user) }">
     <h2 x-text="user.name"></h2>
     <p>Threads: <span x-text="user.threads.length"></span></p>

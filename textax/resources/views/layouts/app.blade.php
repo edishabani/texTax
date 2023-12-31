@@ -12,7 +12,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -32,7 +32,6 @@
                 @yield('content')
 
                 @if (Route::currentRouteNamed('dashboard'))
-                    <a href="{{ route('threads.create') }}" class="ml-4 text-blue-500 hover:underline flex justify-center items-center">Create Thread</a>
                     @foreach ($threads as $thread)
                         <x-thread-card :thread="$thread" />
                     @endforeach

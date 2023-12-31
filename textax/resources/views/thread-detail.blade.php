@@ -1,3 +1,5 @@
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+
 <div x-data="{ thread: @json($thread), comments: [] }" class="container mx-auto px-4">
     <div class="bg-white rounded-lg shadow p-6">
         <h2 x-text="thread.title" class="text-2xl font-bold mb-2"></h2>

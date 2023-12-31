@@ -1,3 +1,5 @@
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+
 <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 gap-4">
         @foreach ($threads as $thread)

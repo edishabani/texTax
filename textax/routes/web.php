@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ThreadsController;
+use App\Http\Controllers\CategoryController;
 
 
 /*
@@ -34,9 +35,10 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
     ->name('register');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
     Route::post('/threads', [ThreadsController::class, 'store'])->name('threads.store');
     Route::get('/threads', [ThreadsController::class, 'index'])->name('threads.index');
@@ -53,6 +55,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/comments', 'App\Http\Controllers\Auth\CommentsController@index');
     Route::post('/threads/{thread}/comments', 'App\Http\Controllers\Auth\CommentsController@store')->name('comments.store');
+
+    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/categories/{category}', [CategoryController::class, 'show']);
+    Route::post('/categories', [CategoryController::class, 'store']);
+    Route::put('/categories/{category}', [CategoryController::class, 'update']);
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
 });
 
 require __DIR__.'/auth.php';
