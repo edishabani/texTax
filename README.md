@@ -3,7 +3,7 @@ texTax is a platform designated for simplicity and usability.
 
 ## Tech Stack
 ```bash
-PHP 8.1
+Laravel
 MySQL
 AlpineJS
 ```
