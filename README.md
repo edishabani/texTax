@@ -1,5 +1,5 @@
 # texTax - Tech Content Posting Platform
-texTax is a tech-based content posting platform developed with Laravel and Alpine.js.
+texTax is a platform designated for simplicity and usability.
 
 ## Tech Stack
 ```bash
