@@ -1,28 +1,47 @@
-# texTax
-This is a tech based content posting platform, created with Laravel and Alpine.js
+texTax - Tech Content Posting Platform
+texTax is a tech-based content posting platform developed with Laravel and Alpine.js.
 
-# Tech Stack 
+Tech Stack
 PHP 8.1
 MySQL
 AlpineJS
 
 
-To install and run the project:
+Installation and Setup
+Follow these steps to set up and run texTax on your local environment. Ensure that you have PHP, Composer, and Node.js installed.
 
-Copy the environment file: Copy the .env.example file to a new file named .env in the same directory. This file contains environment-specific settings that are loaded into your application.
+1. Copy Environment File
+Copy the .env.example file to a new file named .env in the same directory. This file contains environment-specific settings that are loaded into your application.
+cp .env.example .env
 
-Install PHP dependencies: Run composer install in the textax directory to install the PHP dependencies specified in composer.json.
+2. Install PHP Dependencies
+Run the following command in the texTax directory to install the PHP dependencies specified in composer.json.
+composer install
 
-Generate an application key: Laravel requires an application key for encrypting data. You can generate it using the artisan command.
+3. Generate Application Key
+Laravel requires an application key for encrypting data. Generate it using the artisan command.
+php artisan key:generate
 
-Install JavaScript dependencies: Run npm install in the textax directory to install the JavaScript dependencies specified in package.json.
+4. Install JavaScript Dependencies
+Run the following command in the texTax directory to install the JavaScript dependencies specified in package.json.
+npm install
 
-Build your assets: If you're using a build system like Vite or Webpack, you'll need to build your assets. For example, if you're using Vite, you can use the vite build command.
+6. Build Assets
+If you're using a build system like Vite or Webpack, build your assets. For example, if you're using Vite, use the following command.
+vite build
 
-Set up your database: Update the .env file with your database connection details. Then, run the migrations using the artisan command.
+6. Set Up Database
+Update the .env file with your database connection details. Then, run the migrations using the artisan command.
+php artisan migrate
 
-Run your tests: Ensure that everything is set up correctly by running your tests.
+8. Run Tests
+Ensure that everything is set up correctly by running your tests.
+php artisan test
 
-Start your application: You can start your application using the PHP built-in server or Laravel's artisan serve command.
+8. Start Application
+You can start your application using the PHP built-in server or Laravel's artisan serve command.
+php artisan serve
 
-Please replace the placeholders with your actual data. Also, make sure to have PHP, Composer, and Node.js installed in your environment.
+Visit http://localhost:port in your web browser to access texTax.
+
+Note: Replace the placeholders in the .env file with your actual data. Make sure to have PHP, Composer, and Node.js installed in your environment.
