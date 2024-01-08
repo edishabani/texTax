@@ -7,6 +7,7 @@ Laravel
 MySQL
 AlpineJS
 ```
+### Testing is done with Jest
 
 
 ## Installation and Setup
