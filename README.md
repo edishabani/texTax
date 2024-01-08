@@ -65,6 +65,6 @@ php artisan serve
 php artisan serve
 ```
 
-Visit http://localhost:port in your web browser to access texTax.
+Visit http://127.0.0.1:8000 in your web browser to access texTax.
 
 Note: Replace the placeholders in the .env file with your actual data. Make sure to have PHP, Composer, and Node.js installed in your environment. And make sure you have the port for php artisan and vite the same.
