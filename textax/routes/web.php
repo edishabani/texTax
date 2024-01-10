@@ -57,7 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/threads/{thread}/comments', 'App\Http\Controllers\Auth\CommentsController@store')->name('comments.store');
 
     Route::get('/categories', [CategoryController::class, 'index']);
-    Route::get('/categories/{category}', [CategoryController::class, 'show']);
+    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
     Route::post('/categories', [CategoryController::class, 'store']);
     Route::put('/categories/{category}', [CategoryController::class, 'update']);
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);

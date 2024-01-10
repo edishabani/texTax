@@ -14,7 +14,7 @@ class ExploreController extends Controller
     public function index()
     {
         $categories = [
-            'Programming and Development' => [
+            'Categories' => [
                 'Programming languages',
                 'Web development',
                 'Mobile app development',

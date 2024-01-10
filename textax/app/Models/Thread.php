@@ -27,4 +27,19 @@ class Thread extends Model
     {
         return 'id';
     }
+
+    public function votes()
+    {
+        return $this->hasMany('App\Models\Vote');
+    }
+
+    public function upvotes()
+    {
+    return $this->votes()->where('type', 'upvote');
+    }
+
+    public function downvotes()
+    {
+        return $this->votes()->where('type', 'downvote');
+    }
 }

@@ -7,11 +7,11 @@
 
     <title>textax</title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
-        <main class="bg-gray-100 container mx-auto px-4 flex justify-center items-center">
+        <main class="bg-white container mx-auto px-4 flex justify-center items-center">
             @yield('content')
         </main>
     </div>

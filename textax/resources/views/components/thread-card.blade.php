@@ -1,4 +1,4 @@
-<div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4 flex justify-center items-center">
+<div class="max-w-md mx-auto bg-gray-600 rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4 flex justify-center items-center">
     <div class="md:flex">
         <div class="p-8">
             <a href="{{ route('threads.show', $thread) }}" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">{{ $thread->title }}</a>
@@ -11,7 +11,11 @@
                 </form>
             @endif
         </div>
-
-
+        <div x-data="{ upvoted: false, downvoted: false, upvotes: {{ $thread->upvotes }}, downvotes: {{ $thread->downvotes }} }">
+            <button @click="if (upvoted) { upvotes--; $dispatch('unvote-thread', { id: {{ $thread->id }} }); upvoted = false; } else if (!downvoted) { upvotes++; $dispatch('upvote-thread', { id: {{ $thread->id }} }); upvoted = true; }" :disabled="downvoted">Upvote</button>
+            <span x-text="upvotes"></span>
+            <button @click="if (downvoted) { downvotes--; $dispatch('unvote-thread', { id: {{ $thread->id }} }); downvoted = false; } else if (!upvoted) { downvotes++; $dispatch('downvote-thread', { id: {{ $thread->id }} }); downvoted = true; }" :disabled="upvoted">Downvote</button>
+            <span x-text="downvotes"></span>
+        </div>
     </div>
 </div>

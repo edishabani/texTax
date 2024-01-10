@@ -23,8 +23,8 @@
     </div>
 
     <div x-data="{ votes: 0 }" class="mt-4">
-        <button @click="votes++" class="px-4 py-2 rounded bg-green-500 text-white">Upvote</button>
-        <button @click="votes--" class="px-4 py-2 rounded bg-red-500 text-white">Downvote</button>
+        <button class="upvote-button" data-comment-id="{{ $comment->id }}">Upvote</button>
+        <button class="downvote-button" data-comment-id="{{ $comment->id }}">Downvote</button>
         <p>Votes: <span x-text="votes"></span></p>
     </div>
 

@@ -1,5 +1,5 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+<!DOCTYPE html>
 <div class="flex justify-center items-center h-screen bg-blue-100" x-data="{ title: '', body: '' }">
     <div class="w-full max-w-md">
         <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('threads.store') }}">
@@ -21,6 +21,9 @@
                 </button>
             </div>
         </form>
+        <button onclick="location.href='{{ route('dashboard') }}'">
+            Back
+        </button>
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}

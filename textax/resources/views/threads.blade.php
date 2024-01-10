@@ -3,7 +3,7 @@
 <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 gap-4">
         @foreach ($threads as $thread)
-            <div class="bg-white rounded-lg shadow p-6">
+            <div class="bg-gray-800 text-white rounded-lg shadow p-6">
                 <h2 class="text-2xl font-bold mb-2">{{ $thread->title }}</h2>
                 <p>{{ $thread->content }}</p>
             </div>

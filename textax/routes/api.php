@@ -20,3 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/threads', [ThreadsController::class, 'store'])->name('threads.store');
+Route::post('/threads/{thread}/upvote', 'App\Http\Controllers\VoteController@upvoteThread');
+Route::post('/threads/{thread}/downvote', 'App\Http\Controllers\VoteController@downvoteThread');
+
+Route::post('/comments/{comment}/upvote', 'App\Http\Controllers\VoteController@upvoteComment');
+Route::post('/comments/{comment}/downvote', 'App\Http\Controllers\VoteController@downvoteComment');
