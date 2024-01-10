@@ -1,5 +1,8 @@
 <div class="max-w-md mx-auto bg-blue-600 rounded-xl shadow-md overflow-hidden md:max-w-2xl m-4 flex justify-center items-center">
     <div class="md:flex">
+        <div class="text-right text-xs bg-gray-200 rounded px-2 py-1">
+            {{ $thread->category ? $thread->category->name : 'No category' }}
+        </div>
         <div class="p-8 flex">
             <div x-data="{ upvoted: false, downvoted: false, upvotes: {{ $thread->upvotes }}, downvotes: {{ $thread->downvotes }} }" class="mr-4 flex flex-col items-center justify-start">
                 <button @click="if (upvoted) { upvotes--; $dispatch('unvote-thread', { id: {{ $thread->id }} }); upvoted = false; } else if (!downvoted) { upvotes++; $dispatch('upvote-thread', { id: {{ $thread->id }} }); upvoted = true; }" :disabled="downvoted" class="btn btn-primary mb-2">&#x25B2;</button>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category; // Import the Category class
+
 use Illuminate\Http\Request;
 
 class ExploreController extends Controller
@@ -23,5 +25,11 @@ class ExploreController extends Controller
         ];
 
         return view('explore.index', compact('categories'));
+    }
+    public function create()
+    {
+        $categories = Category::all(); // Use the Category class
+
+        return view('create', compact('categories'));
     }
 }

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Thread;
+use App\Models\Category;
 use Illuminate\Support\Facades\Log;
 
 class ThreadsController extends Controller
@@ -35,7 +36,9 @@ class ThreadsController extends Controller
     // Show the form for creating a new thread.
     public function create()
     {
-        return view('threads.create');
+        $categories = Category::all();
+
+        return view('threads.create', compact('categories'));
     }
     // Show my threads.
     public function myThreads()
@@ -67,6 +70,8 @@ class ThreadsController extends Controller
             'title' => $validatedData['title'],
             'body' => $validatedData['body'],
         ]);
+        $thread->category_id = $request->category_id;
+        $thread->save();
 
         // Flash a success message to the session
         session()->flash('message', 'Thread successfully created.');
