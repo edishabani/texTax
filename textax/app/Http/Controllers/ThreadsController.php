@@ -70,8 +70,6 @@ class ThreadsController extends Controller
             'title' => $validatedData['title'],
             'body' => $validatedData['body'],
         ]);
-        $thread->category_id = $request->category_id;
-        $thread->save();
 
         // Flash a success message to the session
         session()->flash('message', 'Thread successfully created.');
