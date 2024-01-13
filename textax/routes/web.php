@@ -35,11 +35,15 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
     ->name('register');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/profile', [UserProfileController::class, 'show'])->name('profile.show');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Display the user profile
+
+    // Show the form for editing the user profile
+    Route::get('/profile/edit', function () {
+        return view('profile.edit');
+    })->name('profile.edit');
+
+    // Handle the form submission from the profile edit page
+    Route::post('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::post('/threads', [ThreadsController::class, 'store'])->name('threads.store');
     Route::get('/threads', [ThreadsController::class, 'index'])->name('threads.index');

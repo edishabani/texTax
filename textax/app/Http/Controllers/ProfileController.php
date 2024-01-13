@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
+
 
 class ProfileController extends Controller
 {
@@ -62,5 +64,16 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            return view('profile.show', ['user' => $user]);
+        } else {
+            // Handle the case where the user is not found
+        }
     }
 }
