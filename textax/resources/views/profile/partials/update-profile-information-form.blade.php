@@ -1,8 +1,8 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+<section class="min-h-screen flex items-center justify-center bg-gray-90">
+    <header class="flex bg-white p-6 rounded shadow">
+        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-400 flex">
             {{ __('Profile Information') }}
         </h2>
 
@@ -15,7 +15,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.edit') }}" class="mt-6 space-y-6 bg-blue-500 text-white px-4 py-2 rounded">
         @csrf
         @method('patch')
 
@@ -49,8 +49,15 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="password" :value="__('Password')" />
+            <x-text-input id="password" name="password" type="password" class="mt-1 block w-full" required autocomplete="new-password" />
+            <x-input-error class="mt-2" :messages="$errors->get('password')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <a href="{{ route('dashboard') }}" class="mb-4 inline-block bg-blue-500 text-white px-4 py-2 rounded">Back</a>
 
             @if (session('status') === 'profile-updated')
                 <p
