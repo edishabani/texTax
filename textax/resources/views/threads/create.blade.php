@@ -22,9 +22,7 @@
                 </button>
             </div>
         </form>
-        <button onclick="location.href='{{ route('dashboard') }}'">
-            Back
-        </button>
+        <a href="{{ route('dashboard') }}" class="mb-4 inline-block bg-blue-500 text-white px-4 py-2 rounded">Back</a>
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}

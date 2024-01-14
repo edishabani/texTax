@@ -8,7 +8,8 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     //
-    public function index() {
+    public function index()
+    {
         $categories = Category::all();
         return view('categories.index', ['categories' => $categories]);
     }
@@ -28,8 +29,14 @@ class CategoryController extends Controller
         $category = Category::find($id);
         return view('categories.show', ['category' => $category]);
     }
-    public function edit($id){
+    public function edit($id)
+    {
         $category = Category::find($id);
+
+        if (!$category) {
+            return redirect()->back()->with('error', 'Category not found');
+        }
+
         return view('categories.edit', ['category' => $category]);
     }
     public function update(Request $request, $id){
