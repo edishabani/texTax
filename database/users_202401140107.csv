@@ -1,0 +1,3 @@
+"id","name","email","email_verified_at","password","remember_token","created_at","updated_at"
+21,edi,edi@gmail.com,"2023-12-28 02:01:49",$2y$12$o6duypLzkH9RKxoakWi49uRP6cFzcljO6O6Bf.PnEpJlNnoRYuxdq,j5Qw1CGo2JrgsPKsLASx4QRagpfCumi79PljnWNZH3J1tQlENq2ZfJwJyBtB,"2023-12-28 02:01:46","2024-01-13 23:51:49"
+22,viola,viola@gmail.com,"2024-01-10 01:38:58",$2y$12$qJYRYFVT3HjtNtUbSZaOz.Nh9cg9Z2V2NASdrz6iWfr8eF09jn9GK,,"2024-01-10 01:38:56","2024-01-10 01:38:58"
